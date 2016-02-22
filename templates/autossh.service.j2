@@ -1,0 +1,10 @@
+Unit]
+Description=AutoSSH service for a reverse tunnel
+After=network.target
+After=networking.service
+
+[Service]
+ExecStart=/usr/bin/autossh -M 0 -q -N -o "ServerAliveInterval 60" -o "ServerAliveCountMax 3" {{ remote_user }}@{{ remote_host }} -R {{ remote_port }}:{{ to_host }}:{{ to_port }} -i {{ remote_private_key }}
+
+[Install]
+WantedBy=multi-user.target

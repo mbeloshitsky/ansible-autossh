@@ -1,0 +1,10 @@
+---
+
+remote_private_key: "/root/.ssh/id_rsa"
+
+remote_host: your_host.example
+remote_user: root
+remote_port: 10022 
+
+to_host: 127.0.0.1 
+to_port: 22

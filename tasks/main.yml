@@ -1,0 +1,16 @@
+---
+
+- name: Устанавливаем AutoSSH
+  sudo: yes
+  apt: pkg=autossh state=present
+
+- name: Устанавливаем службу systemd
+  sudo: yes
+  template: src=autossh.service.j2 dest=/etc/systemd/system/autossh.service
+  notify: 
+      - reload systemd
+      - restart autossh
+
+- name: Запускаем службу удаленного доступа
+  sudo: yes
+  service: name=autossh state=started enabled=yes
